@@ -7,7 +7,6 @@ from player import player
 
 
 
-
 # https://gist.github.com/i000313/90b1f3c556b1b1ad8278
 Large_Font=('Verdana',15)
 Normal_Font=('Verdana',11)
@@ -22,7 +21,7 @@ def add_player(main_window,handler):
 	window.title("Add")
 
 	label=tk.Label(window,text='Name',font=Normal_Font)
-	label.grid(row=1,column=1)
+	label.grid(row=1,column=1,rowspan=1)
 	name=ttk.Entry(window)
 
 	name.insert(0, 'Name')
@@ -30,16 +29,14 @@ def add_player(main_window,handler):
 
 
 	list_players=tk.Listbox(window)
-	list_players.grid(row=0,column=0)
+	list_players.grid(row=0,column=0,rowspan=2)
 
 	for j in handler.get_players():
 		list_players.insert(tk.END,j.get_info('name'))
 
 
 	
-
 	def add_handler():
-		print('weeee')
 		name_p=name.get()
 		new_player=player(name_p)
 		handler.add_player(new_player)
@@ -48,25 +45,28 @@ def add_player(main_window,handler):
 		
 
 	def del_handler():
-		index=list_players.curselection()[0]
-		list_players.delete(index)
-		handler.delete_player(index)
-		main_window.event_generate('<<new_player>>')
+		try:
+			index=list_players.curselection()[0]
+			list_players.delete(index)
+			handler.delete_player(index)
+			main_window.event_generate('<<new_player>>')
+		except:
+			pass
 
 
 
 	add_button=tk.Button(window,text='Add',command= lambda :add_handler())
-	add_button.grid(row=0,column=1)
+	add_button.grid(row=0,column=1,sticky='EW')
 
 	add_button=tk.Button(window,text='Del',command= lambda :del_handler())
-	add_button.grid(row=0,column=2)
+	add_button.grid(row=0,column=2,sticky='EW')
 
 	window.bind('<Control-w>', lambda y:  window.destroy())
 
 def gui():
 
 	root=tk.Tk()
-	root.geometry('920x720')
+	#root.geometry('520x520')
 
 
 	try:
@@ -75,21 +75,74 @@ def gui():
 	except:
 		handler=Handler()
 
-	list_players=tk.Listbox(root)
-	list_players.grid(row=0,column=0)
+	label=tk.Label(root,text='All players',font=Normal_Font)
+	label.grid(row=0,column=0,rowspan=1)
 
-	for j in handler.get_players():
-		list_players.insert(tk.END,j.get_info('name'))
+	label=tk.Label(root,text='Active game',font=Normal_Font)
+	label.grid(row=0,column=4,rowspan=1)
+
+	list_players=tk.Listbox(root,selectmode=tk.MULTIPLE)
+	list_players.grid(row=1,column=0,columnspan=1,rowspan=2)
+
+	
+
+	game_players=tk.Listbox(root,selectmode=tk.SINGLE)
+	game_players.grid(row=1,column=4,columnspan=1,rowspan=2)
 
 
-	def create_list():	
+	def create_game():
+		global current_game
+		current_game=[]
+		players_index=list_players.curselection()
+
+
+
+		player_1=handler.get_player(players_index[0])
+		player_2=handler.get_player(players_index[1])
+
+		current_game.append(player_1)
+		current_game.append(player_2)
+
+		game_players.delete(0,tk.END)
+		game_players.insert(tk.END,player_1.get_info('name')+'  - MMR: %s'% round(player_1.get_info('elo')))
+		game_players.insert(tk.END,player_2.get_info('name')+'  - MMR: %s'%round(player_2.get_info('elo')))
+
+	def stop_game():
+		current_game=[]
+		game_players.delete(0,tk.END)
+		list_players.selection_clear(0,tk.END)
+
+
+
+	add_game=tk.Button(root,text='Create \n game',command= lambda :create_game())
+	add_game.grid(row=1,column=1,sticky='EW')
+
+	delete_game=tk.Button(root,text='Stop game',command= lambda :stop_game())
+	delete_game.grid(row=2,column=1,sticky='EW')
+
+	def end_game():	
+		print(game_players.curselection())
+		print(current_game)
+		winner=current_game[game_players.curselection()[0]]
+
+		handler.results(current_game[0],current_game[1],winner)
+
+		root.event_generate("<<new_player>>")
+	record_result=tk.Button(root,text='Record',command= lambda :end_game())
+
+
+	record_result.grid(row=3,column=4,sticky='EW')
+
+
+	def create_list_all_players():	
 		list_players.delete(0,tk.END)
 		for j in handler.get_players():
-			list_players.insert(tk.END,j.get_info('name'))
+			list_players.insert(tk.END,j.get_info('name')+'  - MMR: %s'%round(j.get_info('elo')))
 
 
+	create_list_all_players()
 
-	root.bind("<<new_player>>",lambda y: create_list())
+	root.bind("<<new_player>>",lambda y: create_list_all_players())
 
 
 	def on_ex():
@@ -111,6 +164,7 @@ def gui():
 	tk.Tk.config(root,menu=menubar)
 
 
+	
 
 	root.protocol("WM_DELETE_WINDOW", on_ex	)
 

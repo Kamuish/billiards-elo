@@ -10,18 +10,63 @@ class Handler:
 
 		self.players.append(player)
 
+	def get_player(self,index):
+		return self.players[index]
 	def get_players(self):
 		return self.players
 
 	def delete_player(self,index):
 		self.players.pop(index)
 
-	def results(self,player_1,player_2,winner):
-		p1_games=player_1.get_game_numbers() 
-		p2_games=player_2.get_game_numbers() 
 
-		if p1_games < 10 :
+	def results(self,player_1,player_2,winner,k_factor=20):
+
+
+		p1_elo=player_1.get_info('elo')
+		p2_elo=player_2.get_info('elo')
+
+		esp_score_p1=1/(1+10**((p2_elo-p1_elo)/400))
+		esp_score_p2=1/(1+10**((p1_elo-p2_elo)/400))
+
+		if winner==None:
+			score_p1=score_p2=0.5
 			
+
+		elif winner.get_info('ID')==player_1.get_info('ID'):
+			score_p1=1
+			score_p2=0
+
+			
+		elif winner.get_info('ID')==player_2.get_info('ID'):
+			score_p1=0
+			score_p2=1
+
+		player_1.record_game(player_2,score_p1)
+		player_2.record_game(player_1,score_p2)
+
+
+		new_elo_p1=p1_elo+k_factor*(score_p1-esp_score_p1)
+		new_elo_p2=p2_elo+k_factor*(score_p2-esp_score_p2)
+
+		player_1.update_elo(new_elo_p1)
+		player_2.update_elo(new_elo_p2)
+
+
+		print(new_elo_p1,new_elo_p2)
+					
+if __name__=='__main__':
+	from player import player
+
+	a=player('a')
+	b=player('b')
+
+	handler=Handler()
+	handler.add_player(a)
+	handler.add_player(b)
+
+	b.update_elo(1000)
+
+	handler.results(a,b,b)
 
 
 

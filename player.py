@@ -33,7 +33,7 @@ class player:
 
 	def record_game(self,player_2,result):
 		self.games.append(player_2)
-		self.oponnent_elo.append(player2.get_info('elo'))
+		self.oponnent_elo.append(player_2.get_info('elo'))
 		self.results.append(result)
 
 		
@@ -44,7 +44,7 @@ class player:
 		return getattr(self,param)
 
 	def update_elo(self,value):
-		self.elo+=value
+		self.elo=value
 
 x=player('aa')
 
