@@ -3,6 +3,7 @@ import pickle
 class Handler:
 	def __init__(self):
 		self.players=[]
+		self.removed_players=[]
 
 	def add_player(self,player):
 		while player.get_info('ID') in self.players:
@@ -16,7 +17,27 @@ class Handler:
 		return self.players
 
 	def delete_player(self,index):
-		self.players.pop(index)
+		self.removed_players.append(self.players.pop(index))
+		
+
+
+	def sort(self):
+		try:
+			update_list=[self.players[0]]
+
+			for j in self.players[1:]:
+				index=0
+
+				for k in update_list:
+					if j.get_info('elo')<= k.get_info('elo'):
+						index+=1
+
+				update_list.insert(index,j)
+			self.players=update_list
+			del update_list
+		except:
+			pass
+
 
 
 	def results(self,player_1,player_2,winner,k_factor=20):

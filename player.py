@@ -32,6 +32,7 @@ class player:
 
 
 	def record_game(self,player_2,result):
+		
 		self.games.append(player_2)
 		self.oponnent_elo.append(player_2.get_info('elo'))
 		self.results.append(result)

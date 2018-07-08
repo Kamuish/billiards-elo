@@ -5,6 +5,9 @@ from tkinter import ttk
 from handler import Handler
 from player import player
 
+import jsonpickle
+
+
 
 
 # https://gist.github.com/i000313/90b1f3c556b1b1ad8278
@@ -65,24 +68,31 @@ def add_player(main_window,handler):
 
 def gui():
 
+	jsonpickle.set_preferred_backend('json')
 	root=tk.Tk()
 	#root.geometry('520x520')
 
 
 	try:
-		pickle_in = open('players.pickle','rb')
-		handler=pickle.load(pickle_in)
+		file_2=open('teste.json','r')
+		val=file_2.read()
+		file_2.close()
+
+
+		handler = jsonpickle.decode(val)  
+
+
 	except:
 		handler=Handler()
 
 	label=tk.Label(root,text='All players',font=Normal_Font)
-	label.grid(row=0,column=0,rowspan=1)
+	label.grid(row=0,column=0,rowspan=1,columnspan=2)
 
 	label=tk.Label(root,text='Active game',font=Normal_Font)
 	label.grid(row=0,column=4,rowspan=1)
 
 	list_players=tk.Listbox(root,selectmode=tk.MULTIPLE)
-	list_players.grid(row=1,column=0,columnspan=1,rowspan=2)
+	list_players.grid(row=1,column=0,columnspan=2,rowspan=2,padx=[0,10],sticky='NSEW')
 
 	
 
@@ -93,33 +103,40 @@ def gui():
 	def create_game():
 		global current_game
 		current_game=[]
-		players_index=list_players.curselection()
+		try:
+			players_index=list_players.curselection()
 
 
 
-		player_1=handler.get_player(players_index[0])
-		player_2=handler.get_player(players_index[1])
+			player_1=handler.get_player(players_index[0])
+			player_2=handler.get_player(players_index[1])
 
-		current_game.append(player_1)
-		current_game.append(player_2)
+			current_game.append(player_1)
+			current_game.append(player_2)
 
-		game_players.delete(0,tk.END)
-		game_players.insert(tk.END,player_1.get_info('name')+'  - MMR: %s'% round(player_1.get_info('elo')))
-		game_players.insert(tk.END,player_2.get_info('name')+'  - MMR: %s'%round(player_2.get_info('elo')))
+			game_players.delete(0,tk.END)
+			game_players.insert(tk.END,player_1.get_info('name')+'  - MMR: %s'% round(player_1.get_info('elo')))
+			game_players.insert(tk.END,player_2.get_info('name')+'  - MMR: %s'%round(player_2.get_info('elo')))
+
+			root.event_generate("<<created>>")
+		except:
+			pass
 
 	def stop_game():
+
 		current_game=[]
 		game_players.delete(0,tk.END)
 		list_players.selection_clear(0,tk.END)
 
+		root.event_generate("<<created>>")
 
 
-	add_game=tk.Button(root,text='Create \n game',command= lambda :create_game())
-	add_game.grid(row=1,column=1,sticky='EW')
+	add_game=tk.Button(root,text='Create game',command= lambda :create_game())
+	add_game.grid(row=3,column=0,sticky='NSEW')
 
 	delete_game=tk.Button(root,text='Stop game',command= lambda :stop_game())
-	delete_game.grid(row=2,column=1,sticky='EW')
-
+	delete_game.grid(row=3,column=1,sticky='NSEW',padx=[0,10])
+	delete_game['state']='disabled'
 	def end_game():	
 
 		winner=current_game[game_players.curselection()[0]]
@@ -131,35 +148,37 @@ def gui():
 	record_result=tk.Button(root,text='Record',command= lambda :end_game())
 
 
-	record_result.grid(row=3,column=4,sticky='EW')
+	record_result.grid(row=3,column=4,sticky='NSEW')
 
 
 	def create_list_all_players():	
 		list_players.delete(0,tk.END)
-		order=[]
+		handler.sort()
 		for j in handler.get_players():
-			order.append(j)
+	
+			list_players.insert(tk.END,j.get_info('name')+'  - MMR: %s'%round(j.get_info('elo')))
 
-			isrt_index=0
-			for player in order:
-				if player.get_info('elo')>=j.get_info('elo'):
-					isrt_index+=1
-				else:
-					break
-
-
-			list_players.insert(isrt_index,j.get_info('name')+'  - MMR: %s'%round(j.get_info('elo')))
-		del order
+	def change_bt_state():
+		if add_game['state']=='disabled':
+			add_game['state']='normal'
+			delete_game['state']='disabled'
+		else:
+			add_game['state']='disabled'
+			delete_game['state']='normal'
 
 	create_list_all_players()
 
 	root.bind("<<new_player>>",lambda y: create_list_all_players())
+	root.bind("<<created>>",lambda y: change_bt_state())
 
 
 	def on_ex():
-		file= open("players.pickle","wb") 
-		pickle.dump(handler,file)
+
+		js = jsonpickle.encode(handler)
+		file=open('teste.json','w')
+		file.write(js)
 		file.close()
+
 		root.quit()
 
 	menubar=tk.Menu(root)
@@ -180,6 +199,7 @@ def gui():
 	root.protocol("WM_DELETE_WINDOW", on_ex	)
 
 	root.bind('<Control-w>', lambda y:  on_ex())
+	root.bind('<Control-W>', lambda y:  on_ex())
 	root.mainloop()
 
 
