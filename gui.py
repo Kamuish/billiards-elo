@@ -121,12 +121,12 @@ def gui():
 	delete_game.grid(row=2,column=1,sticky='EW')
 
 	def end_game():	
-		print(game_players.curselection())
-		print(current_game)
+
 		winner=current_game[game_players.curselection()[0]]
 
 		handler.results(current_game[0],current_game[1],winner)
 
+		stop_game()
 		root.event_generate("<<new_player>>")
 	record_result=tk.Button(root,text='Record',command= lambda :end_game())
 
@@ -136,9 +136,20 @@ def gui():
 
 	def create_list_all_players():	
 		list_players.delete(0,tk.END)
+		order=[]
 		for j in handler.get_players():
-			list_players.insert(tk.END,j.get_info('name')+'  - MMR: %s'%round(j.get_info('elo')))
+			order.append(j)
 
+			isrt_index=0
+			for player in order:
+				if player.get_info('elo')>=j.get_info('elo'):
+					isrt_index+=1
+				else:
+					break
+
+
+			list_players.insert(isrt_index,j.get_info('name')+'  - MMR: %s'%round(j.get_info('elo')))
+		del order
 
 	create_list_all_players()
 
