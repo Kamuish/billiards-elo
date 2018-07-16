@@ -1,5 +1,6 @@
 import pickle
 
+#Elo system that stores all players in a list.
 class Handler:
 	def __init__(self):
 		self.players=[]
@@ -31,7 +32,6 @@ class Handler:
 				for k in update_list:
 					if j.get_info('elo')<= k.get_info('elo'):
 						index+=1
-
 				update_list.insert(index,j)
 			self.players=update_list
 			del update_list
@@ -74,6 +74,7 @@ class Handler:
 
 
 		print(new_elo_p1,new_elo_p2)
+		
 					
 if __name__=='__main__':
 	from player import player

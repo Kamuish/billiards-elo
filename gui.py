@@ -106,8 +106,6 @@ def gui():
 		try:
 			players_index=list_players.curselection()
 
-
-
 			player_1=handler.get_player(players_index[0])
 			player_2=handler.get_player(players_index[1])
 

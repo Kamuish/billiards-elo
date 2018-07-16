@@ -1,9 +1,5 @@
 from random import randint
 import pickle
-x='qaa'
-print(x)
-x=x[:-1]+']'
-print(x)
 
 
 class player:
@@ -15,6 +11,8 @@ class player:
 		self.oponnent_elo=[]
 		self.results=[]
 		self.name=name
+
+		self.tournament_result={}
 
 	def __str__(self):
 		games_str='['
@@ -37,7 +35,10 @@ class player:
 		self.oponnent_elo.append(player_2.get_info('elo'))
 		self.results.append(result)
 
-		
+	def tourn_result(self,tourn,result,brackets):
+		self.tournament_result[tourn]=str(result)+'/'+str(brackets)
+
+
 	def get_game_numbers(self):
 		return len(self.games)
 
@@ -46,14 +47,3 @@ class player:
 
 	def update_elo(self,value):
 		self.elo=value
-
-x=player('aa')
-
-if 0:
-	pickle_out=open("test.pickle",'wb')
-	pickle.dump(x,pickle_out)
-	pickle_out.close
-if 0:
-	pickle_in=open("test.pickle",'rb')
-	x=pickle.load(pickle_in)
-	print(x)
