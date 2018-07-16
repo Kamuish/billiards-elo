@@ -5,12 +5,12 @@ class Stage():
 		self.players=players
 
 
+
 		self.passing=['TBD' for j in range(int(len(players)/2))]
 
 
 		count=0
 		for j in range(0,len(players)-1,2):
-			print(j)
 			if players[j] =='Open':
 				self.passing[count]=players[j+1]
 
@@ -76,9 +76,17 @@ class Brackets():
 		for j in range(len(self.stages)):
 			
 			players=self.stages[j].get_players()
-			string = players[0]
+
+			if players[0]=='Open' or players[0]=='TBD':
+				string=players[0]
+			else:
+				string = players[0].get_info('name')
+
 			for elem in players[1:]:
-				string+='\t'+str(elem)
+				if elem=='Open' or elem=='TBD':
+					string+='\t'+elem
+				else:
+					string+='\t'+elem.get_info('name')
 			print(string)
 
 	def stages_numb(self):
@@ -87,12 +95,15 @@ class Brackets():
 
 
 class tournament(Brackets):
-	def __init__(self,handler,players):
+	def __init__(self,name,handler,players):
 		super().__init__(handler,players)
 
+		self.name=name
 		self.all_players=players
 		self.handler=handler
+		self.name
 
+		self.print_stages()
 		
 		
 

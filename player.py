@@ -15,15 +15,9 @@ class player:
 		self.tournament_result={}
 
 	def __str__(self):
-		games_str='['
-		for j in self.games:
-			games_str+= j + ','
+		
+		return 'ID:'+str(self.ID)+'-name:'+self.name+'-elo:'+str(self.elo)
 
-		if len(self.games)!=0:
-			games_str=games_str[:-1]+']'
-		else:
-			games_str+=']'
-		return 'ID:'+str(self.ID)+'-name:'+self.name+'-games:'+games_str+'-elo:'+str(self.elo)
 
 	def new_ID(self):
 		self.ID=randint(0,10000)
@@ -36,7 +30,12 @@ class player:
 		self.results.append(result)
 
 	def tourn_result(self,tourn,result,brackets):
-		self.tournament_result[tourn]=str(result)+'/'+str(brackets)
+		if tourn in self.tournament_result:
+
+			self.tournament_result[tourn].append([str(result)+'/'+str(brackets)])
+		else:
+
+			self.tournament_result[tourn]=[str(result)+'/'+str(brackets)]
 
 
 	def get_game_numbers(self):

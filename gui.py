@@ -4,7 +4,7 @@ from tkinter import ttk
 
 from handler import Handler
 from player import player
-
+from tourn_screen import tourn_page
 import jsonpickle
 
 
@@ -186,8 +186,14 @@ def gui():
 	filemenu.add_separator()
 	filemenu.add_command(label='Exit',command=lambda: on_ex(),font=Normal_Font)
 
+	filemenu.add_command(label='Exit',command=lambda: on_ex(),font=Normal_Font)
 
-	menubar.add_cascade(label='File',menu=filemenu,font=Normal_Font)
+	tour=tk.Menu(menubar,tearoff=0)
+	tour.add_command(label='Tournament',command=lambda: tourn_page(handler),font=Normal_Font)
+
+
+	menubar.add_cascade(label='Player Handler',menu=filemenu,font=Normal_Font)
+	menubar.add_cascade(label='Tournament',menu=tour,font=Normal_Font)
 
 	tk.Tk.config(root,menu=menubar)
 

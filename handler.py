@@ -14,6 +14,7 @@ class Handler:
 
 	def get_player(self,index):
 		return self.players[index]
+		
 	def get_players(self):
 		return self.players
 
@@ -74,7 +75,7 @@ class Handler:
 
 
 		print(new_elo_p1,new_elo_p2)
-		
+
 					
 if __name__=='__main__':
 	from player import player
