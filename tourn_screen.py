@@ -21,37 +21,53 @@ def tour_graph(tour):
 	listas=[]
 
 	tour.print_stages()
-	span=1
-	for j in range(len(tour.stages)):
-		win=tk.Frame(root)
-		win.grid(row=0,column=j,rowspan=len(tour.stages[0].get_players()))
-		win.pack_propagate(True)
-		windows.append(win)
-		listas.append([])
-		players=tour.stages[j].get_players()
+	def draw_stages():
+		span=1
+		for j in range(len(tour.stages)):
+			win=tk.Frame(root)
+			win.grid(row=0,column=j,rowspan=len(tour.stages[0].get_players()))
+			#win.pack_propagate(True)
+			windows.append(win)
+			listas.append([])
+			players=tour.stages[j].get_players()
 
-		count=0
-
-		for k in range(0,len(players)-1,2):
-			try:	
-				but1=tk.Button(win,text=players[k].get_info('name'))	
-				
-
-			except:
-				but1=tk.Button(win,text=players[k])
+			count=0
 			
-			try:	
-				but2=tk.Button(win,text=players[k+1].get_info('name'))	
+			for k in range(0,len(players)-1,2):
+				try:	
+					but1=tk.Button(win,text=players[k].get_info('name'))	
+				except:
+					but1=tk.Button(win,text=players[k])
 				
-			except:
-				but2=tk.Button(win,text=players[k+1])
+				try:	
+					but2=tk.Button(win,text=players[k+1].get_info('name'))	
+					
+				except:
+					but2=tk.Button(win,text=players[k+1])
+				
+				
+				but1.grid(row=count ,column=0,rowspan=span,sticky='NSEW')
 			
-			but1.grid(row=k +span-1,column=0,rowspan=span,sticky='NSEW')
-			but2.grid(row=k+span,column=0,rowspan=span,sticky='NSEW')
+				but2.grid(row=count+span,column=0,rowspan=span,sticky='NSEW')
+			
+				listas[-1].append([but1,but2])
+				count+=span*2
+			if len(players)==1:
+				try:
+					but1=tk.Button(win,text=players[0].get_info('name'))
+				except:
+					but1=tk.Button(win,text=players[0])
+				but1.grid(row=0,column=0,rowspan=span,sticky='NSEW')
+				listas[-1].append([but1])
 
-			listas[-1].append([but1,but2])
-			count+=1
-		span*=2
+			span*=2
+
+	def update_handler():
+		draw_stages()
+	button=tk.Button(root,text='Update',command=lambda: update_handler())
+	button.grid(row=len(tour.stages[0].get_players())+1,column=0,pady=[10,0])
+
+
 def tourn_page(handler):
 
 	global tour_holder
