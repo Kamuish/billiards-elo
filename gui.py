@@ -53,7 +53,8 @@ def add_player(main_window,handler):
 			list_players.delete(index)
 			handler.delete_player(index)
 			main_window.event_generate('<<new_player>>')
-		except:
+		except Exception as e:
+			print(e)
 			pass
 
 
@@ -186,7 +187,6 @@ def gui():
 	filemenu.add_separator()
 	filemenu.add_command(label='Exit',command=lambda: on_ex(),font=Normal_Font)
 
-	filemenu.add_command(label='Exit',command=lambda: on_ex(),font=Normal_Font)
 
 	tour=tk.Menu(menubar,tearoff=0)
 	tour.add_command(label='Tournament',command=lambda: tourn_page(handler),font=Normal_Font)

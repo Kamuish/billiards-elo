@@ -8,22 +8,59 @@ from player import player
 import jsonpickle
 from tourn_handler import tournament
 
+
 Large_Font=('Verdana',15)
 Normal_Font=('Verdana',11)
 Small_Font=('Verdana',10)
 
 
 def tour_graph(tour):
-	1
+	root=tk.Toplevel()
 
+	windows=[]
+	listas=[]
+
+	tour.print_stages()
+	span=1
+	for j in range(len(tour.stages)):
+		win=tk.Frame(root)
+		win.grid(row=0,column=j,rowspan=len(tour.stages[0].get_players()))
+		win.pack_propagate(True)
+		windows.append(win)
+		listas.append([])
+		players=tour.stages[j].get_players()
+
+		count=0
+
+		for k in range(0,len(players)-1,2):
+			try:	
+				but1=tk.Button(win,text=players[k].get_info('name'))	
+				
+
+			except:
+				but1=tk.Button(win,text=players[k])
+			
+			try:	
+				but2=tk.Button(win,text=players[k+1].get_info('name'))	
+				
+			except:
+				but2=tk.Button(win,text=players[k+1])
+			
+			but1.grid(row=k +span-1,column=0,rowspan=span,sticky='NSEW')
+			but2.grid(row=k+span,column=0,rowspan=span,sticky='NSEW')
+
+			listas[-1].append([but1,but2])
+			count+=1
+		span*=2
 def tourn_page(handler):
 
-	
+	global tour_holder
+	global active_tour
 	root=tk.Toplevel()
 
 	jsonpickle.set_encoder_options('json',indent=4)
 
-	jsonpickle.set_decoder_options('json',indent=4)
+	jsonpickle.set_decoder_options('json')
 	#Tour_holder is a list with the names of all the tournaments
 
 	try:
@@ -32,9 +69,13 @@ def tourn_page(handler):
 		file_2.close()
 
 		tour_holder = jsonpickle.decode(val)  
-	except:
+	except Exception as e:
+		print(e)
+		print('no dice')
 		tour_holder=[]
 
+
+	
 	active_tour=None
 
 
@@ -71,7 +112,7 @@ def tourn_page(handler):
 
 		def active():
 			
-
+			global tour_holder
 			index=list_p.curselection()
 			players=[]
 			if len(index)!=0:
@@ -81,6 +122,14 @@ def tourn_page(handler):
 				active_tour=tournament(entry.get(),handler,players)
 				tour_holder.append(active_tour)
 			root.event_generate("<<new_tour>>")
+
+			
+			js = jsonpickle.encode(tour_holder)
+			file=open('tour_holder.json','w')
+			file.write(js)
+			file.close()
+
+
 			window.destroy()
 
 
@@ -90,12 +139,23 @@ def tourn_page(handler):
 
 
 
+	def load_tour():
+		global active_tour
+		try:
+			active_tour=tour_holder[list_tour.curselection()[0]]
+		except:
+			pass
+
+		
 	add_game=tk.Button(root,text='Create Tour',command= lambda :create_tour())
 	add_game.grid(row=3,column=0,sticky='NSEW')
 
-	load_game=tk.Button(root,text='Load Tour',command= lambda :create_game())
+	load_game=tk.Button(root,text='Load Tour',command= lambda :load_tour())
 	load_game.grid(row=3,column=1,sticky='NSEW')
 
+
+	add_game=tk.Button(root,text='Start Tour',command= lambda :tour_graph(active_tour))
+	add_game.grid(row=3,column=2,sticky='NSEW')
 
 
 

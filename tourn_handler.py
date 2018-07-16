@@ -84,7 +84,7 @@ class Brackets():
 
 			for elem in players[1:]:
 				if elem=='Open' or elem=='TBD':
-					string+='\t'+elem
+					string+='\t'+elem	
 				else:
 					string+='\t'+elem.get_info('name')
 			print(string)
