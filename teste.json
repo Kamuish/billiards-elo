@@ -1,57 +1,46 @@
 {
-    "removed_players": [
-        {
-            "results": [],
-            "oponnent_elo": [],
-            "py/object": "player.player",
-            "tournament_result": {},
-            "name": "Name",
-            "ID": 2290,
-            "games": [],
-            "elo": 1200
-        }
-    ],
     "py/object": "handler.Handler",
     "players": [
         {
-            "results": [],
-            "oponnent_elo": [],
-            "py/object": "player.player",
+            "ID": 5413,
             "tournament_result": {},
+            "py/object": "player.player",
+            "results": [],
             "name": "Name",
-            "ID": 8518,
-            "games": [],
-            "elo": 1200
+            "oponnent_elo": [],
+            "elo": 1200,
+            "games": []
         },
         {
-            "results": [],
-            "oponnent_elo": [],
-            "py/object": "player.player",
+            "ID": 2127,
             "tournament_result": {},
+            "py/object": "player.player",
+            "results": [],
             "name": "Name1",
-            "ID": 7748,
-            "games": [],
-            "elo": 1200
+            "oponnent_elo": [],
+            "elo": 1200,
+            "games": []
         },
         {
-            "results": [],
-            "oponnent_elo": [],
-            "py/object": "player.player",
+            "ID": 3070,
             "tournament_result": {},
+            "py/object": "player.player",
+            "results": [],
             "name": "Name2",
-            "ID": 5958,
-            "games": [],
-            "elo": 1200
+            "oponnent_elo": [],
+            "elo": 1200,
+            "games": []
         },
         {
-            "results": [],
-            "oponnent_elo": [],
-            "py/object": "player.player",
+            "ID": 6682,
             "tournament_result": {},
+            "py/object": "player.player",
+            "results": [],
             "name": "Name3",
-            "ID": 2157,
-            "games": [],
-            "elo": 1200
+            "oponnent_elo": [],
+            "elo": 1200,
+            "games": []
         }
-    ]
+    ],
+    "removed_players": []
 }

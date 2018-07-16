@@ -8,49 +8,97 @@ from player import player
 import jsonpickle
 from tourn_handler import tournament
 
+from functools import partial
 
 Large_Font=('Verdana',15)
 Normal_Font=('Verdana',11)
 Small_Font=('Verdana',10)
 
+winners={}
 
 def tour_graph(tour):
 	root=tk.Toplevel()
 
 	windows=[]
+	global listas
 	listas=[]
 
 	tour.print_stages()
+
+
+	def hit_button(brack,p1,p2,val):
+		global winners
+		global listas
+		if val=='one':
+			other_p=p2
+			p_ind=p1
+		else:
+			other_p=p1
+			p_ind=p2
+			
+		print(brack)
+		if len(winners)==0:
+			winners[brack]=[p_ind]
+		else:
+			if other_p in winners[brack]:
+				winners[brack][winners[brack].index(other_p)]=p_ind
+			else:
+				winners[brack].append(p_ind)
+			# O resto da divisao inteira por 2 da a posicao dos butoes na lista
+
+		
+		button1=listas[brack][p1]
+		button2=listas[brack][p2]
+
+		if val=='one':
+			button1['bg']='SkyBlue1'
+			button2['bg']='snow3'
+
+		if val=='two':
+			button2['bg']='SkyBlue1'
+			button1['bg']='snow3'
+
+			
+
 	def draw_stages():
 		span=1
 		for j in range(len(tour.stages)):
 			win=tk.Frame(root)
 			win.grid(row=0,column=j,rowspan=len(tour.stages[0].get_players()))
-			#win.pack_propagate(True)
 			windows.append(win)
+			global listas
 			listas.append([])
 			players=tour.stages[j].get_players()
 
 			count=0
 			
 			for k in range(0,len(players)-1,2):
+				var1=tk.StringVar()
+				var2=tk.StringVar()
 				try:	
-					but1=tk.Button(win,text=players[k].get_info('name'))	
+					but1=tk.Button(win,text=players[k].get_info('name'),command=partial( hit_button, j,k,k+1,'one'))
 				except:
 					but1=tk.Button(win,text=players[k])
-				
+					if players[k]=='Open':
+						but1['state']=tk.DISABLED
 				try:	
-					but2=tk.Button(win,text=players[k+1].get_info('name'))	
+					but2=tk.Button(win,text=players[k+1].get_info('name'),command=partial(hit_button,j,k,k+1,'two'))	
 					
 				except:
 					but2=tk.Button(win,text=players[k+1])
+
+					if players[k+1]=='Open':
+						but2['state']=tk.DISABLED
 				
 				
 				but1.grid(row=count ,column=0,rowspan=span,sticky='NSEW')
 			
 				but2.grid(row=count+span,column=0,rowspan=span,sticky='NSEW')
-			
-				listas[-1].append([but1,but2])
+				
+
+				listas[-1].append(but1)
+				listas[-1].append(but2)
+				del but1,but2
 				count+=span*2
 			if len(players)==1:
 				try:
@@ -58,12 +106,22 @@ def tour_graph(tour):
 				except:
 					but1=tk.Button(win,text=players[0])
 				but1.grid(row=0,column=0,rowspan=span,sticky='NSEW')
-				listas[-1].append([but1])
+				listas[-1].append(but1)
+				del but1
 
 			span*=2
 
+
 	def update_handler():
+		global listas
+
+		for j in listas:
+			for k in j:
+				print('TODO')
+
 		draw_stages()
+
+	draw_stages()
 	button=tk.Button(root,text='Update',command=lambda: update_handler())
 	button.grid(row=len(tour.stages[0].get_players())+1,column=0,pady=[10,0])
 

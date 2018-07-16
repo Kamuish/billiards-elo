@@ -27,3 +27,6 @@ print(c.name)
 
 x=[1,2,3]
 print(x[1:])
+
+
+print(4//2)

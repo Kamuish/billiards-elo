@@ -1,78 +1,133 @@
 [
     {
+        "stages": [
+            {
+                "passing": [
+                    {
+                        "py/id": 3
+                    },
+                    {
+                        "py/id": 9
+                    },
+                    "TBD",
+                    {
+                        "py/id": 5
+                    }
+                ],
+                "players": {
+                    "py/id": 2
+                },
+                "py/object": "tourn_handler.Stage",
+                "handler": {
+                    "py/id": 23
+                }
+            },
+            {
+                "passing": [
+                    "TBD",
+                    "TBD"
+                ],
+                "players": {
+                    "py/id": 27
+                },
+                "py/object": "tourn_handler.Stage",
+                "handler": {
+                    "py/id": 23
+                }
+            },
+            {
+                "passing": [
+                    "TBD"
+                ],
+                "players": {
+                    "py/id": 29
+                },
+                "py/object": "tourn_handler.Stage",
+                "handler": {
+                    "py/id": 23
+                }
+            },
+            {
+                "passing": [],
+                "players": {
+                    "py/id": 31
+                },
+                "py/object": "tourn_handler.Stage",
+                "handler": {
+                    "py/id": 23
+                }
+            }
+        ],
+        "name": "",
         "py/object": "tourn_handler.tournament",
         "all_players": [
             {
-                "py/object": "player.player",
-                "elo": 1190.0,
-                "name": "Name",
-                "ID": 1863,
                 "oponnent_elo": [
                     1200
                 ],
+                "name": "Name",
+                "py/object": "player.player",
                 "games": [
                     {
-                        "py/object": "player.player",
-                        "elo": 1199.71225631668,
-                        "name": "Name1",
-                        "ID": 5923,
                         "oponnent_elo": [
                             1200,
                             1200
                         ],
+                        "name": "Name1",
+                        "py/object": "player.player",
                         "games": [
                             {
                                 "py/id": 3
                             },
                             {
-                                "py/object": "player.player",
-                                "elo": 1229.4169512322633,
-                                "name": "Name",
-                                "ID": 3945,
                                 "oponnent_elo": [
                                     1210.0,
                                     1200,
                                     1200
                                 ],
+                                "name": "Name",
+                                "py/object": "player.player",
                                 "games": [
                                     {
                                         "py/id": 5
                                     },
                                     {
-                                        "py/object": "player.player",
-                                        "elo": 1190.2960185560382,
-                                        "name": "Name",
-                                        "ID": 4068,
                                         "oponnent_elo": [
                                             1210.28774368332
                                         ],
+                                        "name": "Name",
+                                        "py/object": "player.player",
                                         "games": [
                                             {
                                                 "py/id": 7
                                             }
                                         ],
+                                        "elo": 1190.2960185560382,
+                                        "ID": 4068,
                                         "results": [
                                             0
                                         ]
                                     },
                                     {
-                                        "py/object": "player.player",
-                                        "elo": 1190.5747738950186,
-                                        "name": "Name",
-                                        "ID": 1792,
                                         "oponnent_elo": [
                                             1219.9917251272818
                                         ],
+                                        "name": "Name",
+                                        "py/object": "player.player",
                                         "games": [
                                             {
                                                 "py/id": 7
                                             }
                                         ],
+                                        "elo": 1190.5747738950186,
+                                        "ID": 1792,
                                         "results": [
                                             0
                                         ]
                                     }
                                 ],
+                                "elo": 1229.4169512322633,
+                                "ID": 3945,
                                 "results": [
                                     1,
                                     1,
@@ -80,12 +135,16 @@
                                 ]
                             }
                         ],
+                        "elo": 1199.71225631668,
+                        "ID": 5923,
                         "results": [
                             1,
                             0
                         ]
                     }
                 ],
+                "elo": 1190.0,
+                "ID": 1863,
                 "results": [
                     0
                 ]
@@ -107,7 +166,6 @@
             "Open"
         ],
         "handler": {
-            "py/object": "handler.Handler",
             "players": [
                 {
                     "py/id": 7
@@ -124,114 +182,107 @@
                 {
                     "py/id": 3
                 }
-            ]
-        },
-        "name": "",
-        "stages": [
-            {
-                "py/object": "tourn_handler.Stage",
-                "players": {
-                    "py/id": 2
-                },
-                "handler": {
-                    "py/id": 23
-                },
-                "passing": [
-                    {
-                        "py/id": 3
-                    },
-                    {
-                        "py/id": 9
-                    },
-                    "TBD",
-                    {
-                        "py/id": 5
-                    }
-                ]
-            },
-            {
-                "py/object": "tourn_handler.Stage",
-                "players": {
-                    "py/id": 27
-                },
-                "handler": {
-                    "py/id": 23
-                },
-                "passing": [
-                    "TBD",
-                    "TBD"
-                ]
-            },
-            {
-                "py/object": "tourn_handler.Stage",
-                "players": {
-                    "py/id": 29
-                },
-                "handler": {
-                    "py/id": 23
-                },
-                "passing": [
-                    "TBD"
-                ]
-            },
-            {
-                "py/object": "tourn_handler.Stage",
-                "players": {
-                    "py/id": 31
-                },
-                "handler": {
-                    "py/id": 23
-                },
-                "passing": []
-            }
-        ]
+            ],
+            "py/object": "handler.Handler"
+        }
     },
     {
+        "stages": [
+            {
+                "passing": [
+                    "TBD",
+                    "TBD",
+                    "Open",
+                    {
+                        "py/id": 40
+                    }
+                ],
+                "players": {
+                    "py/id": 35
+                },
+                "py/object": "tourn_handler.Stage",
+                "handler": {
+                    "py/id": 56
+                }
+            },
+            {
+                "passing": [
+                    "TBD",
+                    {
+                        "py/id": 40
+                    }
+                ],
+                "players": {
+                    "py/id": 60
+                },
+                "py/object": "tourn_handler.Stage",
+                "handler": {
+                    "py/id": 56
+                }
+            },
+            {
+                "passing": [
+                    "TBD"
+                ],
+                "players": {
+                    "py/id": 62
+                },
+                "py/object": "tourn_handler.Stage",
+                "handler": {
+                    "py/id": 56
+                }
+            },
+            {
+                "passing": [],
+                "players": {
+                    "py/id": 64
+                },
+                "py/object": "tourn_handler.Stage",
+                "handler": {
+                    "py/id": 56
+                }
+            }
+        ],
+        "name": "",
         "py/object": "tourn_handler.tournament",
         "all_players": [
             {
-                "py/object": "player.player",
-                "elo": 1190.5747738950186,
-                "name": "Name",
-                "ID": 1792,
                 "oponnent_elo": [
                     1219.9917251272818
                 ],
+                "name": "Name",
+                "py/object": "player.player",
                 "games": [
                     {
-                        "py/object": "player.player",
-                        "elo": 1229.4169512322633,
-                        "name": "Name",
-                        "ID": 3945,
                         "oponnent_elo": [
                             1210.0,
                             1200,
                             1200
                         ],
+                        "name": "Name",
+                        "py/object": "player.player",
                         "games": [
                             {
-                                "py/object": "player.player",
-                                "elo": 1199.71225631668,
-                                "name": "Name1",
-                                "ID": 5923,
                                 "oponnent_elo": [
                                     1200,
                                     1200
                                 ],
+                                "name": "Name1",
+                                "py/object": "player.player",
                                 "games": [
                                     {
-                                        "py/object": "player.player",
-                                        "elo": 1190.0,
-                                        "name": "Name",
-                                        "ID": 1863,
                                         "oponnent_elo": [
                                             1200
                                         ],
+                                        "name": "Name",
+                                        "py/object": "player.player",
                                         "games": [
                                             {
                                                 "py/id": 40
                                             }
                                         ],
+                                        "elo": 1190.0,
+                                        "ID": 1863,
                                         "results": [
                                             0
                                         ]
@@ -240,24 +291,26 @@
                                         "py/id": 38
                                     }
                                 ],
+                                "elo": 1199.71225631668,
+                                "ID": 5923,
                                 "results": [
                                     1,
                                     0
                                 ]
                             },
                             {
-                                "py/object": "player.player",
-                                "elo": 1190.2960185560382,
-                                "name": "Name",
-                                "ID": 4068,
                                 "oponnent_elo": [
                                     1210.28774368332
                                 ],
+                                "name": "Name",
+                                "py/object": "player.player",
                                 "games": [
                                     {
                                         "py/id": 38
                                     }
                                 ],
+                                "elo": 1190.2960185560382,
+                                "ID": 4068,
                                 "results": [
                                     0
                                 ]
@@ -266,6 +319,8 @@
                                 "py/id": 36
                             }
                         ],
+                        "elo": 1229.4169512322633,
+                        "ID": 3945,
                         "results": [
                             1,
                             1,
@@ -273,6 +328,8 @@
                         ]
                     }
                 ],
+                "elo": 1190.5747738950186,
+                "ID": 1792,
                 "results": [
                     0
                 ]
@@ -294,7 +351,6 @@
             "Open"
         ],
         "handler": {
-            "py/object": "handler.Handler",
             "players": [
                 {
                     "py/id": 38
@@ -311,67 +367,51 @@
                 {
                     "py/id": 42
                 }
-            ]
-        },
-        "name": "",
-        "stages": [
-            {
-                "py/object": "tourn_handler.Stage",
-                "players": {
-                    "py/id": 35
-                },
-                "handler": {
-                    "py/id": 56
-                },
-                "passing": [
-                    "TBD",
-                    "TBD",
-                    "Open",
-                    {
-                        "py/id": 40
-                    }
-                ]
-            },
-            {
-                "py/object": "tourn_handler.Stage",
-                "players": {
-                    "py/id": 60
-                },
-                "handler": {
-                    "py/id": 56
-                },
-                "passing": [
-                    "TBD",
-                    {
-                        "py/id": 40
-                    }
-                ]
-            },
-            {
-                "py/object": "tourn_handler.Stage",
-                "players": {
-                    "py/id": 62
-                },
-                "handler": {
-                    "py/id": 56
-                },
-                "passing": [
-                    "TBD"
-                ]
-            },
-            {
-                "py/object": "tourn_handler.Stage",
-                "players": {
-                    "py/id": 64
-                },
-                "handler": {
-                    "py/id": 56
-                },
-                "passing": []
-            }
-        ]
+            ],
+            "py/object": "handler.Handler"
+        }
     },
     {
+        "stages": [
+            {
+                "passing": [
+                    "TBD",
+                    {
+                        "py/id": 38
+                    }
+                ],
+                "players": {
+                    "py/id": 68
+                },
+                "py/object": "tourn_handler.Stage",
+                "handler": {
+                    "py/id": 56
+                }
+            },
+            {
+                "passing": [
+                    "TBD"
+                ],
+                "players": {
+                    "py/id": 71
+                },
+                "py/object": "tourn_handler.Stage",
+                "handler": {
+                    "py/id": 56
+                }
+            },
+            {
+                "passing": [],
+                "players": {
+                    "py/id": 73
+                },
+                "py/object": "tourn_handler.Stage",
+                "handler": {
+                    "py/id": 56
+                }
+            }
+        ],
+        "name": "eqweqweqweqw",
         "py/object": "tourn_handler.tournament",
         "all_players": [
             {
@@ -387,85 +427,79 @@
         ],
         "handler": {
             "py/id": 56
-        },
-        "name": "eqweqweqweqw",
-        "stages": [
-            {
-                "py/object": "tourn_handler.Stage",
-                "players": {
-                    "py/id": 68
-                },
-                "handler": {
-                    "py/id": 56
-                },
-                "passing": [
-                    "TBD",
-                    {
-                        "py/id": 38
-                    }
-                ]
-            },
-            {
-                "py/object": "tourn_handler.Stage",
-                "players": {
-                    "py/id": 71
-                },
-                "handler": {
-                    "py/id": 56
-                },
-                "passing": [
-                    "TBD"
-                ]
-            },
-            {
-                "py/object": "tourn_handler.Stage",
-                "players": {
-                    "py/id": 73
-                },
-                "handler": {
-                    "py/id": 56
-                },
-                "passing": []
-            }
-        ]
+        }
     },
     {
+        "stages": [
+            {
+                "passing": [
+                    "TBD",
+                    "TBD"
+                ],
+                "players": {
+                    "py/id": 77
+                },
+                "py/object": "tourn_handler.Stage",
+                "handler": {
+                    "py/id": 98
+                }
+            },
+            {
+                "passing": [
+                    "TBD"
+                ],
+                "players": {
+                    "py/id": 102
+                },
+                "py/object": "tourn_handler.Stage",
+                "handler": {
+                    "py/id": 98
+                }
+            },
+            {
+                "passing": [],
+                "players": {
+                    "py/id": 104
+                },
+                "py/object": "tourn_handler.Stage",
+                "handler": {
+                    "py/id": 98
+                }
+            }
+        ],
+        "name": "adasd",
         "py/object": "tourn_handler.tournament",
         "all_players": [
             {
-                "py/object": "player.player",
-                "elo": 1229.4169512322633,
-                "name": "Name",
-                "ID": 3945,
                 "oponnent_elo": [
                     1210.0,
                     1200,
                     1200
                 ],
+                "name": "Name",
+                "py/object": "player.player",
                 "games": [
                     {
-                        "py/object": "player.player",
-                        "elo": 1199.71225631668,
-                        "name": "Name1",
-                        "ID": 5923,
                         "oponnent_elo": [
                             1200,
                             1200
                         ],
+                        "name": "Name1",
+                        "py/object": "player.player",
                         "games": [
                             {
-                                "py/object": "player.player",
-                                "elo": 1190.0,
-                                "name": "Name",
-                                "ID": 1863,
                                 "oponnent_elo": [
                                     1200
                                 ],
+                                "name": "Name",
+                                "py/object": "player.player",
                                 "games": [
                                     {
                                         "py/id": 80
                                     }
                                 ],
+                                "elo": 1190.0,
+                                "ID": 1863,
                                 "results": [
                                     0
                                 ]
@@ -474,46 +508,50 @@
                                 "py/id": 78
                             }
                         ],
+                        "elo": 1199.71225631668,
+                        "ID": 5923,
                         "results": [
                             1,
                             0
                         ]
                     },
                     {
-                        "py/object": "player.player",
-                        "elo": 1190.2960185560382,
-                        "name": "Name",
-                        "ID": 4068,
                         "oponnent_elo": [
                             1210.28774368332
                         ],
+                        "name": "Name",
+                        "py/object": "player.player",
                         "games": [
                             {
                                 "py/id": 78
                             }
                         ],
+                        "elo": 1190.2960185560382,
+                        "ID": 4068,
                         "results": [
                             0
                         ]
                     },
                     {
-                        "py/object": "player.player",
-                        "elo": 1190.5747738950186,
-                        "name": "Name",
-                        "ID": 1792,
                         "oponnent_elo": [
                             1219.9917251272818
                         ],
+                        "name": "Name",
+                        "py/object": "player.player",
                         "games": [
                             {
                                 "py/id": 78
                             }
                         ],
+                        "elo": 1190.5747738950186,
+                        "ID": 1792,
                         "results": [
                             0
                         ]
                     }
                 ],
+                "elo": 1229.4169512322633,
+                "ID": 3945,
                 "results": [
                     1,
                     1,
@@ -531,7 +569,6 @@
             }
         ],
         "handler": {
-            "py/object": "handler.Handler",
             "players": [
                 {
                     "py/id": 78
@@ -548,93 +585,105 @@
                 {
                     "py/id": 82
                 }
-            ]
-        },
-        "name": "adasd",
+            ],
+            "py/object": "handler.Handler"
+        }
+    },
+    {
         "stages": [
             {
-                "py/object": "tourn_handler.Stage",
-                "players": {
-                    "py/id": 77
-                },
-                "handler": {
-                    "py/id": 98
-                },
                 "passing": [
                     "TBD",
                     "TBD"
-                ]
+                ],
+                "players": {
+                    "py/id": 108
+                },
+                "py/object": "tourn_handler.Stage",
+                "handler": {
+                    "py/id": 125
+                }
             },
             {
-                "py/object": "tourn_handler.Stage",
-                "players": {
-                    "py/id": 102
-                },
-                "handler": {
-                    "py/id": 98
-                },
                 "passing": [
                     "TBD"
-                ]
+                ],
+                "players": {
+                    "py/id": 134
+                },
+                "py/object": "tourn_handler.Stage",
+                "handler": {
+                    "py/id": 125
+                }
             },
             {
-                "py/object": "tourn_handler.Stage",
+                "passing": [],
                 "players": {
-                    "py/id": 104
+                    "py/id": 136
                 },
+                "py/object": "tourn_handler.Stage",
                 "handler": {
-                    "py/id": 98
-                },
-                "passing": []
+                    "py/id": 125
+                }
             }
-        ]
-    },
-    {
+        ],
+        "name": "testes",
         "py/object": "tourn_handler.tournament",
         "all_players": [
             {
-                "py/object": "player.player",
-                "elo": 1200,
+                "oponnent_elo": [],
                 "name": "Name",
+                "py/object": "player.player",
+                "tournament_result": {},
+                "games": [],
+                "elo": 1200,
                 "ID": 8518,
-                "oponnent_elo": [],
-                "games": [],
-                "tournament_result": {},
                 "results": []
             },
             {
-                "py/object": "player.player",
-                "elo": 1200,
+                "oponnent_elo": [],
                 "name": "Name1",
+                "py/object": "player.player",
+                "tournament_result": {},
+                "games": [],
+                "elo": 1200,
                 "ID": 7748,
-                "oponnent_elo": [],
-                "games": [],
-                "tournament_result": {},
                 "results": []
             },
             {
-                "py/object": "player.player",
-                "elo": 1200,
+                "oponnent_elo": [],
                 "name": "Name2",
-                "ID": 5958,
-                "oponnent_elo": [],
-                "games": [],
+                "py/object": "player.player",
                 "tournament_result": {},
+                "games": [],
+                "elo": 1200,
+                "ID": 5958,
                 "results": []
             },
             {
-                "py/object": "player.player",
-                "elo": 1200,
-                "name": "Name3",
-                "ID": 2157,
                 "oponnent_elo": [],
-                "games": [],
+                "name": "Name3",
+                "py/object": "player.player",
                 "tournament_result": {},
+                "games": [],
+                "elo": 1200,
+                "ID": 2157,
                 "results": []
             }
         ],
         "handler": {
-            "py/object": "handler.Handler",
+            "removed_players": [
+                {
+                    "oponnent_elo": [],
+                    "name": "Name",
+                    "py/object": "player.player",
+                    "tournament_result": {},
+                    "games": [],
+                    "elo": 1200,
+                    "ID": 2290,
+                    "results": []
+                }
+            ],
             "players": [
                 {
                     "py/id": 109
@@ -649,56 +698,7 @@
                     "py/id": 121
                 }
             ],
-            "removed_players": [
-                {
-                    "py/object": "player.player",
-                    "elo": 1200,
-                    "name": "Name",
-                    "ID": 2290,
-                    "oponnent_elo": [],
-                    "games": [],
-                    "tournament_result": {},
-                    "results": []
-                }
-            ]
-        },
-        "name": "testes",
-        "stages": [
-            {
-                "py/object": "tourn_handler.Stage",
-                "players": {
-                    "py/id": 108
-                },
-                "handler": {
-                    "py/id": 125
-                },
-                "passing": [
-                    "TBD",
-                    "TBD"
-                ]
-            },
-            {
-                "py/object": "tourn_handler.Stage",
-                "players": {
-                    "py/id": 134
-                },
-                "handler": {
-                    "py/id": 125
-                },
-                "passing": [
-                    "TBD"
-                ]
-            },
-            {
-                "py/object": "tourn_handler.Stage",
-                "players": {
-                    "py/id": 136
-                },
-                "handler": {
-                    "py/id": 125
-                },
-                "passing": []
-            }
-        ]
+            "py/object": "handler.Handler"
+        }
     }
 ]
