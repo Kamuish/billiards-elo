@@ -17,7 +17,18 @@ Small_Font=('Verdana',10)
 winners={}
 listas=[]
 all_winners={}
+#################################
+'''
+TODO: 
 
+	confirmar que o update do ELO funciona dentro dos torneios -> working so far
+
+
+	fazer o "fecho" do torneio, gravando resultados e desativando o torneio
+	ver o esquema de cores para derrotas. nao esta a funcionar como era suposto
+'''
+
+#################################
 def tour_graph(controller,handler,tour):
 	root=tk.Toplevel()
 
@@ -99,11 +110,12 @@ def tour_graph(controller,handler,tour):
 
 		
 
-	def draw_stages():
+	def draw_stages(root):
 		span=1
 
 
 		for j in range(len(tour.stages)):
+			tour.stages[j].clean_bracket()
 			win=tk.Frame(root)
 			win.grid(row=0,column=j,rowspan=len(tour.stages[0].get_players()))
 			windows.append(win)
@@ -114,8 +126,7 @@ def tour_graph(controller,handler,tour):
 			count=0
 			
 			for k in range(0,len(players)-1,2):
-				var1=tk.StringVar()
-				var2=tk.StringVar()
+			
 				try:	
 					but1=tk.Button(win,text=players[k].get_info('name'),command=partial( hit_button, j,k,k+1,'one'))
 				except:
@@ -131,16 +142,17 @@ def tour_graph(controller,handler,tour):
 					if players[k+1]=='Open':
 						but2['state']=tk.DISABLED
 				
-				
+			
 				but1.grid(row=count ,column=0,rowspan=span,sticky='NSEW',padx=[0,10],pady=[3*span,3*span])
 			
-				but2.grid(row=count+span,column=0,rowspan=span,sticky='NSEW',padx=[0,10],pady=[3*span,3*span])
+				but2.grid(row=span+count,column=0,rowspan=span,sticky='NSEW',padx=[0,10],pady=[3*span,3*span])
 				
 
 				listas[-1].append(but1)
 				listas[-1].append(but2)
 				del but1,but2
 				count+=span*2
+
 			if len(players)==1:
 				try:
 					but1=tk.Button(win,text=players[0].get_info('name'))
@@ -153,7 +165,7 @@ def tour_graph(controller,handler,tour):
 			span*=2
 
 
-	def update_handler(handler):
+	def update_handler(root,handler):
 		tour.update()
 
 		global winners
@@ -173,7 +185,7 @@ def tour_graph(controller,handler,tour):
 
 		windows=[]
 		listas=[]
-		draw_stages()
+		draw_stages(root)
 
 		
 		all_winners.update(winners)
@@ -188,9 +200,9 @@ def tour_graph(controller,handler,tour):
 					pass
 		winners={}
 		controller.event_generate("<<new_player>>")
-	draw_stages()
+	draw_stages(root)
 
-	button=tk.Button(root,text='Update',command=lambda: update_handler(handler))
+	button=tk.Button(root,text='Update',command=lambda: update_handler(root,handler))
 	button.grid(row=len(tour.stages[0].get_players())+1,column=0,pady=[10,0])
 
 

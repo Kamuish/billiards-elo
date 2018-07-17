@@ -9,17 +9,23 @@ class Stage():
 		self.passing=['TBD' for j in range(int(len(players)/2))]
 		self.lost=['TBD' for j in range(int(len(players)/2))]
 
-		count=0
-		for j in range(0,len(players)-1,2):
-			if players[j] =='Open':
-				self.passing[count]=players[j+1]
-
-			elif players[j+1]=='Open':
-				self.passing[count]=players[j]
-			count+=1
+		
 			
-		self.handler=handler
+		self.clean_bracket()
 
+
+	def clean_bracket(self):
+		count=0
+		for j in range(0,len(self.players)-1,2):
+			if self.players[j]=='Open' and self.players[j+1]=='Open':
+				self.passing[count]=self.players[j]
+
+			if self.players[j] =='Open':
+				self.passing[count]=self.players[j+1]
+
+			elif self.players[j+1]=='Open':
+				self.passing[count]=self.players[j]
+			count+=1
 
 	def __str__(self):
 		return ''.join(self.players)
@@ -38,10 +44,10 @@ class Stage():
 
 
 	def game_result(self,handler,player1,player2,winner,index):
+		
 		print(handler)
 		handler.results(player1,player2,winner)
 
-		print(handler)
 		if winner.get_info('ID')==player1.get_info('ID'):
 			score_p1=1
 			score_p2=0
@@ -56,7 +62,7 @@ class Stage():
 			self.passing[index]=player2
 
 			self.lost[index]=player1
-
+		print(handler)
 
 
 class Brackets():
