@@ -1,46 +1,88 @@
 {
+    "removed_players": [],
     "py/object": "handler.Handler",
     "players": [
         {
-            "ID": 5413,
-            "tournament_result": {},
+            "elo": 1220.0,
             "py/object": "player.player",
-            "results": [],
-            "name": "Name",
-            "oponnent_elo": [],
-            "elo": 1200,
-            "games": []
-        },
-        {
-            "ID": 2127,
             "tournament_result": {},
-            "py/object": "player.player",
-            "results": [],
-            "name": "Name1",
-            "oponnent_elo": [],
-            "elo": 1200,
-            "games": []
-        },
-        {
-            "ID": 3070,
-            "tournament_result": {},
-            "py/object": "player.player",
-            "results": [],
-            "name": "Name2",
-            "oponnent_elo": [],
-            "elo": 1200,
-            "games": []
-        },
-        {
-            "ID": 6682,
-            "tournament_result": {},
-            "py/object": "player.player",
-            "results": [],
             "name": "Name3",
-            "oponnent_elo": [],
-            "elo": 1200,
-            "games": []
+            "games": [
+                {
+                    "elo": 1190.0,
+                    "py/object": "player.player",
+                    "tournament_result": {},
+                    "name": "Name4",
+                    "games": [
+                        {
+                            "py/id": 2
+                        }
+                    ],
+                    "ID": 3992,
+                    "results": [
+                        0
+                    ],
+                    "oponnent_elo": [
+                        1200
+                    ]
+                },
+                {
+                    "elo": 1200.0,
+                    "py/object": "player.player",
+                    "tournament_result": {},
+                    "name": "Name2",
+                    "games": [
+                        {
+                            "elo": 1190.0,
+                            "py/object": "player.player",
+                            "tournament_result": {},
+                            "name": "Name1",
+                            "games": [
+                                {
+                                    "py/id": 8
+                                }
+                            ],
+                            "ID": 9840,
+                            "results": [
+                                0
+                            ],
+                            "oponnent_elo": [
+                                1200
+                            ]
+                        },
+                        {
+                            "py/id": 2
+                        }
+                    ],
+                    "ID": 453,
+                    "results": [
+                        1,
+                        0
+                    ],
+                    "oponnent_elo": [
+                        1200,
+                        1210.0
+                    ]
+                }
+            ],
+            "ID": 1605,
+            "results": [
+                1,
+                1
+            ],
+            "oponnent_elo": [
+                1200,
+                1210.0
+            ]
+        },
+        {
+            "py/id": 8
+        },
+        {
+            "py/id": 10
+        },
+        {
+            "py/id": 4
         }
-    ],
-    "removed_players": []
+    ]
 }

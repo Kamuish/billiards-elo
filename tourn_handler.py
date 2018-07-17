@@ -30,25 +30,29 @@ class Stage():
 	def get_players(self):
 		return self.players
 
+	def get_player(self,index):
+		return self.players[index]
 	def add_player(self,player,position):
 
 		self.players.insert(position,add_player)
 
 
-	def game_result(self,player1,player2,winner):
-		self.handler.results(player1,player2,winner)
+	def game_result(self,handler,player1,player2,winner,index):
+		print(handler)
+		handler.results(player1,player2,winner)
 
+		print(handler)
 		if winner.get_info('ID')==player1.get_info('ID'):
 			score_p1=1
 			score_p2=0
 
-			self.passing.append(player1)
+			self.passing[index]=player1
 
 			
 		elif winner.get_info('ID')==player2.get_info('ID'):
 			score_p1=0
 			score_p2=1
-			self.passing.append(player2)
+			self.passing[index]=player2
 
 
 
@@ -89,6 +93,9 @@ class Brackets():
 					string+='\t'+elem.get_info('name')
 			print(string)
 
+	def update(self):
+		for j in range(1,len(self.stages)):
+			self.stages[j].players=self.stages[j-1].passing
 	def stages_numb(self):
 		return len(self.stages)
 

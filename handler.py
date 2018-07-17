@@ -14,7 +14,7 @@ class Handler:
 
 	def get_player(self,index):
 		return self.players[index]
-		
+
 	def get_players(self):
 		return self.players
 
@@ -22,7 +22,12 @@ class Handler:
 		self.removed_players.append(self.players.pop(index))
 		
 
+	def __str__(self):
+		string=''
 
+		for j in self.players:
+			string+='- name:'+str(j.get_info('name'))+' -elo:'+str(j.get_info('elo'))
+		return string
 	def sort(self):
 		try:
 			update_list=[self.players[0]]

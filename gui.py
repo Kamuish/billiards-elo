@@ -136,6 +136,7 @@ def gui():
 	delete_game=tk.Button(root,text='Stop game',command= lambda :stop_game())
 	delete_game.grid(row=3,column=1,sticky='NSEW',padx=[0,10])
 	delete_game['state']='disabled'
+
 	def end_game():	
 
 		winner=current_game[game_players.curselection()[0]]
@@ -152,9 +153,9 @@ def gui():
 
 	def create_list_all_players():	
 		list_players.delete(0,tk.END)
+		print('creating list gui')
 		handler.sort()
 		for j in handler.get_players():
-	
 			list_players.insert(tk.END,j.get_info('name')+'  - MMR: %s'%round(j.get_info('elo')))
 
 	def change_bt_state():
@@ -189,7 +190,7 @@ def gui():
 
 
 	tour=tk.Menu(menubar,tearoff=0)
-	tour.add_command(label='Tournament',command=lambda: tourn_page(handler),font=Normal_Font)
+	tour.add_command(label='Tournament',command=lambda: tourn_page(root,handler),font=Normal_Font)
 
 
 	menubar.add_cascade(label='Player Handler',menu=filemenu,font=Normal_Font)
