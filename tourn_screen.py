@@ -43,6 +43,20 @@ def tour_graph(controller,handler,tour):
 			p_ind=p2
 			
 		if brack in winners:
+			if p_ind in winners[brack]:
+				button1=listas[brack][p1]
+				button2=listas[brack][p2]
+
+				tmp=tk.Button(root)
+				color=tmp['bg']
+				winners[brack].remove(p_ind)
+				button1['bg']=color
+				button2['bg']=color
+
+				del tmp
+				return
+
+
 			if other_p in winners[brack]:
 				winners[brack][winners[brack].index(other_p)]=p_ind
 			else:
@@ -77,6 +91,8 @@ def tour_graph(controller,handler,tour):
 		winners={}
 		listas=[]
 		windows=[]
+		print('on ex')
+		print(handler)
 		root.destroy()
 	root.protocol("WM_DELETE_WINDOW", on_ex	)
 
@@ -116,9 +132,9 @@ def tour_graph(controller,handler,tour):
 						but2['state']=tk.DISABLED
 				
 				
-				but1.grid(row=count ,column=0,rowspan=span,sticky='NSEW')
+				but1.grid(row=count ,column=0,rowspan=span,sticky='NSEW',padx=[0,10],pady=[3*span,3*span])
 			
-				but2.grid(row=count+span,column=0,rowspan=span,sticky='NSEW')
+				but2.grid(row=count+span,column=0,rowspan=span,sticky='NSEW',padx=[0,10],pady=[3*span,3*span])
 				
 
 				listas[-1].append(but1)
@@ -160,14 +176,13 @@ def tour_graph(controller,handler,tour):
 		draw_stages()
 
 		
-
 		all_winners.update(winners)
 		for key in range(len(listas)):	
 			for j in range(len(listas[key])):
 				try:
 					if j in all_winners[key]:
 						listas[key][j]['bg']='cyan'
-					else:
+					elif tour.has_lost(tour.stages[key].get_player(j)):
 						listas[key][j]['bg']='brown2'
 				except:
 					pass
@@ -198,7 +213,6 @@ def tourn_page(controller,handler):
 		tour_holder = jsonpickle.decode(val)  
 	except Exception as e:
 		print(e)
-		print('no dice')
 		tour_holder=[]
 
 

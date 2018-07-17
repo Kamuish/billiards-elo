@@ -7,7 +7,7 @@ class Stage():
 
 
 		self.passing=['TBD' for j in range(int(len(players)/2))]
-
+		self.lost=['TBD' for j in range(int(len(players)/2))]
 
 		count=0
 		for j in range(0,len(players)-1,2):
@@ -47,6 +47,7 @@ class Stage():
 			score_p2=0
 
 			self.passing[index]=player1
+			self.lost[index]=player2
 
 			
 		elif winner.get_info('ID')==player2.get_info('ID'):
@@ -54,6 +55,7 @@ class Stage():
 			score_p2=1
 			self.passing[index]=player2
 
+			self.lost[index]=player1
 
 
 
@@ -93,6 +95,13 @@ class Brackets():
 					string+='\t'+elem.get_info('name')
 			print(string)
 
+	def has_lost(self,player):
+		for j in self.lost:
+			if player in j:
+				print(1)
+				return True
+		print(0)
+		return False
 	def update(self):
 		for j in range(1,len(self.stages)):
 			self.stages[j].players=self.stages[j-1].passing

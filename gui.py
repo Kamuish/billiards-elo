@@ -15,6 +15,7 @@ Large_Font=('Verdana',15)
 Normal_Font=('Verdana',11)
 Small_Font=('Verdana',10)
 
+
 def add_player(main_window,handler):
 
 	#TODO: adicionar uma lista pra ver os jogadores e ser possível editar/eliminar jogadores
